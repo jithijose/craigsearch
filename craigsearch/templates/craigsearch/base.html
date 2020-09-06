@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'craigsearch/css/materialize.css' %}" type="text/css" rel="stylesheet"
+    media="screen,projection" />
+  <link href="{% static 'craigsearch/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">CraigSearch</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Speeds up Coding</h5>
+            <p class="light">Speed up the development process.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">User Experience</h5>
+            <p class="light">Better user experience with user pages.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Easy to work with</h5>
+            <p class="light">Easy to add more features</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  {% if error_message %}
+  <p><strong>{{ error_message }}</strong></p>
+  {% endif %}
+
+  <div class="container">
+    <div class="section">
+      <form action="{% url 'craigsearch:search' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Search" name="search_str" id="search_str" type="text" class="validate">
+          </div>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% if final_postings %}
+  {% block content %}
+  {% endblock %}
+  {% endif %}
+
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h5 class="white-text">Django Project</h5>
+          <p class="grey-text text-lighten-4">Django Project</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'craigsearch/js/materialize.js' %}"></script>
+  <script src="{% static 'craigsearch/js/init.js' %}"></script>
+
+</body>
+
+</html>
